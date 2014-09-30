@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	    <meta charset="utf-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <title>Godot</title>
+	    
+	    <!-- Bootstrap -->
+		
+		<link rel="stylesheet" href="../static/bootstrap-3.2.0-dist/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../static/bootstrap-3.2.0-dist/css/bootstrap-theme.min.css">
+		<script src="../static/bootstrap-3.2.0-dist/js/jquery.min.js"></script>
+		<script src="../static/bootstrap-3.2.0-dist/js/bootstrap.min.js"></script>
+		<style type="text/css">    
+		    h1{
+		        margin: 30px 0;
+		        padding: 0 200px 15px 0;
+		        border-bottom: 1px solid #E5E5E5;
+		    }
+			.bs-example{
+		    	margin: 20px;
+		    }
+		</style>
+	</head>
+	<body>
+	
+	<!-- Header -->
+	
+	<div id="top-nav" class="navbar navbar-inverse navbar-static-top">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+	          <span class="icon-bar"></span>
+	          <span class="icon-bar"></span>
+	          <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="#">Dashboard</a>
+	    </div>
+	    <div class="navbar-collapse collapse">
+	      <ul class="nav navbar-nav navbar-right">   
+	        <li class="dropdown">
+	          <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#"><i class="glyphicon glyphicon-user"></i> Admin <span class="caret"></span></a>
+	          <ul id="g-account-menu" class="dropdown-menu" role="menu">
+	            <li><a href="#">My Profile</a></li>
+	          </ul>
+	        </li>
+	        <li><a href="#"><i class="glyphicon glyphicon-lock"></i> Logout</a></li>
+	      </ul>
+	    </div>
+	  </div><!-- /container -->
+	</div>
+	
+	<!-- /Header -->
+	
+	{% block content %}
+	<!-- Main -->
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-2">
+				<div class="panel panel-default">
+					<div class="panel-heading">Menu</div>
+  					<div class="panel-body">
+
+	      	<!-- Left column -->
+	      		<a href="#"><strong><i class="glyphicon glyphicon-wrench"></i> Tools</strong></a>  
+	      		<hr width="50%" align="left">
+	     		<ul class="list-unstyled">
+	        		<li class="nav-header"><a href="#" data-toggle="collapse" data-target="#userMenu">
+	          				<h5>Pre Trade <i class="glyphicon glyphicon-chevron-down"></i></h5>
+	          			</a>
+	            		
+	            			{% for top in left_panel %}
+	            			<ul class="list-unstyled collapse in" id="userMenu">
+	            				{% for second in top %}
+	                				<li class="active"> <a href="{{ second['url'] }}"><i class="{{ second['icon'] }}"></i>{{ second.key }}</a></li>
+	                			{% endfor %}
+	                		{% endfor %}	
+	                		<li><a href="#"><i class="glyphicon glyphicon-envelope"></i> Failures <span class="badge badge-info">4</span></a></li>
+	                		<li><a href="#"><i class="glyphicon glyphicon-cog"></i> Overrides</a></li>
+	                		<li><a href="#"><i class="glyphicon glyphicon-comment"></i> Closed</a></li>
+	                		<li><a href="#"><i class="glyphicon glyphicon-user"></i> Pending</a></li>
+	                		<li><a href="#"><i class="glyphicon glyphicon-flag"></i> Downgraded</a></li>
+	            		</ul>
+	        		</li>
+	        	
+	        		<li class="nav-header"> <a href="#" data-toggle="collapse" data-target="#userMenu2">
+	          				<h5>Post Trade <i class="glyphicon glyphicon-chevron-down"></i></h5>
+	          			</a>
+	            		<ul class="list-unstyled collapse in" id="userMenu2">
+	                		<li class="active"> <a href="#"><i class="glyphicon glyphicon-home"></i> Home</a></li>
+	                		<li><a href="#"><i class="glyphicon glyphicon-envelope"></i> Failures <span class="badge badge-info">10</span></a></li>
+	                		<li><a href="#"><i class="glyphicon glyphicon-cog"></i> Incidents</a></li>
+	                		<li><a href="#"><i class="glyphicon glyphicon-comment"></i> Closed</a></li>
+	                		<li><a href="#"><i class="glyphicon glyphicon-user"></i> Audit</a></li>
+	                		<li><a href="#"><i class="glyphicon glyphicon-flag"></i> Downgraded</a></li>
+	            		</ul>
+	        		</li>
+	        		
+	        		<li class="nav-header"> <a href="#" data-toggle="collapse" data-target="#menu2">
+	          				<h5>Reports <i class="glyphicon glyphicon-chevron-right"></i></h5>
+	          			</a>
+	        			<ul class="list-unstyled collapse" id="menu2">
+	                		<li><a href="#">Information &amp; Stats</a></li>
+	                		<li><a href="#">Views</a></li>
+	                		<li><a href="#">Requests</a></li>
+	                		<li><a href="#">Timetable</a></li>
+	                		<li><a href="{{ url_for("index") }}">Alerts</a></li>
+	            		</ul>
+	        		</li>
+	        	</ul>
+	      {% endblock %}     
+	      		<hr width="50%" align="left">
+	      	    <a href="#"><strong><i class="glyphicon glyphicon-link"></i> Resources</strong></a>
+	      		<hr width="50%" align="left">
+	      		</div>
+	        </div>
+	  		</div><!-- /col-3 -->
+			<div class="col-sm-9" style="text-align: left";height:200px>
+				<div class="panel panel-default">
+					<div class="panel-heading">ETS Form</div>
+  					<div class="panel-body">
+							<div class="bs-example">
+							    <h1>ETS</h1>
+							    <form class="form-horizontal" style="text-align: left">
+							        <div class="form-group">
+							            <label class="control-label col-xs-2" for="firstName">Name:</label>
+							            <div class="col-xs-9">
+							                <input type="text" class="form-control" id="firstName" placeholder="Name">
+							            </div>
+							        </div>
+							        <div class="form-group">
+							            <label class="control-label col-xs-2" for="lastName">EmployeeId:</label>
+							            <div class="col-xs-9">
+							                <input type="text" class="form-control" id="lastName" placeholder="Employee Id">
+							            </div>
+							        </div>
+							        <div class="form-group">
+							            <label class="control-label col-xs-2" for="phoneNumber">Department:</label>
+							            <div class="col-xs-9">
+							                <input type="tel" class="form-control" id="phoneNumber" placeholder="Department">
+							            </div>
+							        </div>
+							        <div class="form-group">
+							            <label class="control-label col-xs-2">Date of Birth:</label>
+							            <div class="col-xs-3">
+							                <select class="form-control">
+							                    <option>Date</option>
+							                </select>
+							            </div>
+							            <div class="col-xs-3">
+							                <select class="form-control">
+							                    <option>Month</option>
+							                </select>
+							            </div>
+							            <div class="col-xs-3">
+							                <select class="form-control">
+							                    <option>Year</option>
+							                </select>
+							            </div>
+							        </div>
+							        <div class="form-group">
+							            <label class="control-label col-xs-2" for="comments">Comments:</label>
+							            <div class="col-xs-9">
+							                <textarea rows="3" class="form-control" id="comments" placeholder="Comments"></textarea>
+							            </div>
+							        </div>
+							        <div class="form-group">
+							            <label class="control-label col-xs-2" for="others">Others:</label>
+							            <div class="col-xs-9">
+							                <input type="text" class="form-control" id="others" placeholder="Some other information">
+							            </div>
+							        </div>
+							        <div class="form-group">
+							            <label class="control-label col-xs-2">Traded:</label>
+							            <div class="col-xs-3">
+							                <label class="radio-inline">
+							                    <input type="radio" name="genderRadios" value="yes"> Yes
+							                </label>
+							            </div>
+							            <div class="col-xs-3">
+							                <label class="radio-inline">
+							                    <input type="radio" name="genderRadios" value="No"> No
+							                </label>
+							            </div>
+							        </div>
+							        <div class="form-group">
+							            <div class="col-xs-offset-3 col-xs-9">
+							                <label class="checkbox-inline">
+							                    <input type="checkbox" value="sendme"> Send me an email confirmation
+							                </label>
+							            </div>
+							        </div>
+							        <div class="form-group">
+							            <div class="col-xs-offset-3 col-xs-9">
+							                <label class="checkbox-inline">
+							                    <input type="checkbox" value="agree">  I agree with the <a href="#">above information</a>.
+							                </label>
+							            </div>
+							        </div>
+							        <br>
+							        <div class="form-group">
+							            <div class="col-xs-offset-3 col-xs-9">
+							                <input type="submit" class="btn btn-primary" value="Submit">
+							                <input type="reset" class="btn btn-default" value="Reset">
+							            </div>
+							        </div>
+							    </form>
+    	   					</div>
+					</div>
+				</div>
+    		</div>
+		</div>
+	</div>
+</body>
+</html>                                		
